@@ -132,21 +132,20 @@ t_EntierLong multiplication(t_EntierLong a, t_EntierLong b) {
     int  nb = 0;
     int  puissance = 1;
     
-    // indice 0 *1 indice 1*10
+    // indice [0]*1, indice [1]*10 pour faire les unité, dizaine, centaines etc...
     for (int i = 0; i < MAXCHIFFRES; i++) {
         na += a.chiffres[i] * puissance;
         nb += b.chiffres[i] * puissance;
         puissance *= 10;
     }
     
-    // ---- Multiplication classique 
     int produit = na * nb;
     if(a.negatif!=b.negatif){
         produit=produit*-1;
     }
     
 
-    // ---- Conversion en t_EntierLong ----
+    // Conversion en t_EntierLong 
     res= convertToLong(produit);
 
     return res;

@@ -5,14 +5,15 @@
 #include "lit_ecrit.h"  // si tu as la fonction afficheEntierLong ici
 
 using namespace std;
+t_EntierLong fibonacci(int n) ;
 
 int main() {
 
     // --- Conversion de base ---
-    t_EntierLong a = convertToLong(12);
-    t_EntierLong b = convertToLong(-10);
-    t_EntierLong c = convertToLong(6);
-    t_EntierLong d = convertToLong(6);
+    t_EntierLong a = convertToLong(15);
+    t_EntierLong b = convertToLong(10);
+    t_EntierLong c = convertToLong(-9);
+    t_EntierLong d = convertToLong(9);
 
     cout << "\n>> Test de conversion :" << endl;
     cout << "a = "; afficheEntierLong(a);
@@ -69,9 +70,45 @@ int main() {
     cout << "c * d = ";
     afficheEntierLong(mul2);
 
-    t_EntierLong mul3 = multiplication(convertToLong(-5), convertToLong(-4));
-    cout << "-5 * -4 = ";
+    t_EntierLong mul3 = multiplication(b, d);
+    cout << "b * d = ";
     afficheEntierLong(mul3);
 
+    cout << "\n>> Test Fibonnaci" << endl;
+
+    t_EntierLong fibo = fibonacci(60);
+    cout << "60 ème terme de la suite de fibonnaci: ";
+    afficheEntierLong(fibo);
+
+    t_EntierLong fibo2 = fibonacci(59);
+    cout << "\n59 ème terme de la suite de fibonnaci: ";
+    afficheEntierLong(fibo2);
+
+    t_EntierLong fibo3 = fibonacci(58);
+    cout << "\n58 ème terme de la suite de fibonnaci: ";
+    afficheEntierLong(fibo3);
+
+    t_EntierLong sousfibo = soustraction(fibo,fibo2);
+    cout << "\nSoustraction u60-u58= ";
+    afficheEntierLong(sousfibo);
+    cout << endl;
     return 0;
+}
+
+t_EntierLong fibonacci(int n) {
+    // Cas de base
+    if (n == 0) return convertToLong(0);
+    if (n == 1) return convertToLong(1);
+
+    t_EntierLong prev = convertToLong(0); // u0
+    t_EntierLong curr = convertToLong(1); // u1
+    t_EntierLong next;
+
+    for (int i = 2; i <= n; i++) {
+        next = addition(prev, curr); // un = un-1 + un-2
+        prev = curr;
+        curr = next;
+    }
+
+    return curr;
 }
